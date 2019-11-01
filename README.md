@@ -52,5 +52,5 @@ Localization is all about estimating the probability distribution of the state x
 2. Observation
 
 * For the observation, we state that the car measures the nearest k seen static objects, in driving direction. 
-* We assume that the car can detect the distances to street lamps and trees, this results in an observation list which includes, for each time stamp t, a vector of distances z<sub>t</sub>, from 1 to z<sub>t</sub> to <sup>k</sup>.
+* We assume that the car can detect the distances to street lamps and trees, this results in an observation list which includes, for each time stamp t, a vector of distances z<sub>t</sub>, from 1 to z<sub>t</sub><sup>k</sup>.
 
