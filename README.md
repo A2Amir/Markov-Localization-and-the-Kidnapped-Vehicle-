@@ -10,7 +10,7 @@ We generally think of our vehicle location as a probability distribution, each t
 
 What we want to estimate is the transformation between the local coordinate system of the car and the global coordinate system of the map. If we know this transformation, then we also know poses of the car in the global map.
 
-We assume these variables are known:
+**We assume these variables are known:**
 
 * A map with all landmarks in a global coordinate system, which could be a grid map of the global environment, or a database, which includes global feature points and the lane geometry. Here, we do not add the time index t to the map because we assume the map does not change over time (**m** represents the map, which could be grid maps, feature maps, landmarks).
 
@@ -23,7 +23,7 @@ We assume these variables are known:
 
 
 
-These values are unknown:
+**These values are unknown:**
 
 The position of the car at time t is defined with **x**, If we assume we have a 2D map for example, x includes a position with x and y coordinates and the orientation phi.
 
