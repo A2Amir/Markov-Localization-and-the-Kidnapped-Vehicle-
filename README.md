@@ -30,3 +30,5 @@ The position of the car at time t is defined with **x**, If we assume we have a 
 
 * x and y coordinates and also the orientation phi (**x<sub>t</sub>** represents the pose (position (x,y) + orientation θ)).
 
+vehicle localization task
+
