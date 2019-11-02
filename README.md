@@ -109,8 +109,7 @@ We normalize these values to a total probability of 1.0 by dividing by the total
 
 ```python
 from decimal import Decimal
-'%.2E' %Decimal((1.0)/9 )
-
+print('%.2E' %Decimal((1.0)/9 ))
 ```
 '1.11E-01'
 
