@@ -109,8 +109,7 @@ We normalize these values to a total probability of 1.0 by dividing by the total
 
 ```python
 from decimal import Decimal
-'%.2E' %Decimal((1.0)/9 )
-
+print('%.2E' %Decimal((1.0)/9 ))
 ```
 '1.11E-01'
 
@@ -119,4 +118,50 @@ from decimal import Decimal
 You can find [Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/Markov%20Localization%20.ipynb) other example to get better Intuition.In the next concept, we will implement belief state initialization in C++.
 
 
+## Initialize Priors Function:
 
+[Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/InitializePriorsFunction.cpp) is created a function in C++ that initializes priors based on the above explained agreement (initial belief state for each position on the map) given landmark positions, a position standard deviation (+/- 1.0), and the assumption that our car is parked next to a landmark.Note that we input a control of moving 1 step but our actual movement could be in the range of 1 +/- control standard deviation. The position standard deviation is the spread in our actual position.
+
+The result of the code:
+[0, 0, 0 ,0, 0.111111, 0.111111, 0.111111 ,0, 0, 0.111111, 0.111111, 0.111111 ,0 ,0 ,0 ,0 ,0 ,0, 0, 0.111111, 0.111111, 0.111111, 0 ,0, 0]
+
+
+## How Much Data: Explanation
+
+Before we go back to math, I want to make sure you understand how much data Z<sub>1:t</sub> represents, so you can consider what the performance consequences would be. So let's pretend that
+
+* The car has driven for 6 hours (6*60(min)*60(second))
+* LIDAR refreshes 10 times per seconds (10 Hertz)
+* LIDAR sends 100,000 data points per observation
+* Each of the 100,000 observations contains 5 pieces of data
+* Each piece of data requires 4 bytes
+
+
+How much data is contained in this Z<sub>1:t</sub>?  Multiplying out gives **432 GB** of data!
+
+you have a sense of the quantity of the data that a real car would use if it's updates step took into account all historical observations. Later in next section, I will show you how we can get around this limitation.
+
+## Derivation schema
+
+Up to here, there are two problems if we want to estimate the posterior directly. 
+
+* The first one is the localizer must process on each cycle a lot of data. 
+* The second is the amount of data increases over time. 
+This won't work for real time localizer, In the following, I will present a mathematical proof showing that we can change this so our localizer, 
+* only needs to handle a few bytes on each update (A little data bytes per update) 
+* handles the same amount of data per update regardless of drive time(amount of data remains constant). 
+let's start with an overview of what we want to achieve. 
+
+##  Apply Bayes Rule with Additional Conditions
+
+You already learned the observation vector could be a lot of data, and we do not want to carry the whole observation history to estimate the state beliefs. We aim to estimate state beliefs **bel(x<sub>t</sub>)** without the need to carry our entire observation history. We will accomplish this by manipulating **our posterior (x<sub>t</sub>∣z<sub>1:t−1</sub>,μ<sub>1:t</sub>,m)** obtaining **a recursive state estimator**. For this to work, we must demonstrate that **our current belief bel(x<sub>t</sub>)** can be expressed by the belief **one step earlier bel(x<sub>t−1</sub>)** then use **new data** to update only **the current belief** (see below figure). This recursive filter is known as the Bayes Localization filter or Markov Localization and enables us to avoid carrying historical observation and motion data. 
+
+<p align="right"> <img src="./img/8.jpg" style="right;" alt=" recursive filter" width="600" height="400"> </p> 
+
+We will achieve this recursive state estimator using Bayes Rule, the Law of Total Probability, and the Markov Assumption, which involves, making meaningful assumptions about the dependencies between on certain values. 
+
+We take the first step towards our recursive structure by splitting our observation vector **z<sub>1:t</sub>** into **current observationsz<sub>t</sub>  ** and **previous information z<sub>1:t−1</sub>**. The new posterior (see below figure)can then be rewritten as **p(x<sub>t</sub>∣z<sub>t</sub>,z<sub>1:t-1</sub>,u<sub>1:t</sub>,m).**
+
+<p align="right"> <img src="./img/9.jpg" style="right;" alt=" The new posterior" width="600" height="400"> </p> 
+
+We apply Bayes' rule with an additional challenge, the presence of multiple distributions on the right side (likelihood, prior, normalizing constant). To handle multiple conditions within Bayes Rule 
