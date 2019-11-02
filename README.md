@@ -126,3 +126,22 @@ The result of the code:
 [0, 0, 0 ,0, 0.111111, 0.111111, 0.111111 ,0, 0, 0.111111, 0.111111, 0.111111 ,0 ,0 ,0 ,0 ,0 ,0, 0, 0.111111, 0.111111, 0.111111, 0 ,0, 0]
 
 
+## How Much Data: Explanation
+
+Before we go back to math, I want to make sure you understand how much data Z<sub>1:t</sub> represents, so you can consider what the performance consequences would be. So let's pretend that
+
+* The car has driven for 6 hours (6*60(min)*60(second))
+* LIDAR refreshes 10 times per seconds (10 Hertz)
+* LIDAR sends 100,000 data points per observation
+* Each of the 100,000 observations contains 5 pieces of data
+* Each piece of data requires 4 bytes
+
+
+How much data is contained in this Z<sub>1:t</sub>?  Multiplying out gives **432 GB** of data!
+
+you have a sense of the quantity of the data that a real car would use if it's updates step took into account all historical observations. Later in next section, I will show you how we can get around this limitation.
+
+
+
+
+
