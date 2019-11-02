@@ -164,7 +164,12 @@ We take the first step towards our recursive structure by splitting our observat
 
 <p align="right"> <img src="./img/9.jpg" style="right;" alt=" The new posterior" width="600" height="400"> </p> 
 
-We apply Bayes' rule with an additional challenge, the presence of multiple distributions on the right side (likelihood, prior, normalizing constant). To handle multiple conditions within Bayes Rule  we apply the below presented Bayes Rule to determine the right side of Bayes rule, where the posterior, P(a∣b) is **p(x<sub>t</sub>∣z<sub>t</sub>,z<sub>1:t-1</sub>,u<sub>1:t</sub>,m).**
+Because of the presence of multiple conditions within Bayes Rule we use substitution, where **x<sub>t</sub> is a, and the observation vector at time t (z<sub>t</sub> )** .You can see (below figure) as a result of applying Bayes' rule for the localization posterior.
 
-<p align="right"> <img src="./img/10.jpg" style="right;" alt=" Bayes Rule to determine the right side of Bayes rule" width="300" height="200"> </p> 
+<p align="right"> <img src="./img/10.jpg" style="right;" alt=" Bayes Rule to determine the right side of Bayes rule" width="600" height="400"> </p> 
+
+To simplify the normalization part, we define the normalizer as Ether. Ether is one of the original normalization term and this term is a sum of the product of the observation and the motion model over all possible states,**x<sub>t</sub><sup>i</sup>**. This also means you only have to define the observation and motion model to estimate the beliefs. 
+
+<p align="right"> <img src="./img/10.jpg" style="right;" alt=" To simplify the normalization part" width="3600" height="400"> </p> 
+
 
