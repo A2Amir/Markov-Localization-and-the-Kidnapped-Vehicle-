@@ -73,7 +73,7 @@ Localization is all about estimating the probability distribution of the state x
 
 We can apply Bayes' Rule to vehicle localization by passing variables through Bayes' Rule for each time step, as our vehicle moves. This is known as a Bayes' Filter for Localization. The generalized form Bayes' Filter for Localization is shown below.
 
-<p align="right"> <img src="./img/6.jpg" style="right;" alt="Bayes' Filter For Localization" width="600" height="400"> </p> 
+<p align="right"> <img src="./img/6.jpg" style="right;" alt="Bayes' Filter For Localization" width="300" height="200"> </p> 
 
 With respect to localization, these terms are:
 
@@ -85,5 +85,18 @@ With respect to localization, these terms are:
 
 Without going into detail yet, be aware that P(location) is determined by the motion model. The probability returned by the motion model is the product of the transition model probability (the probability of moving from x<sub>t−1</sub> --> x<sub>t</sub> and the probability of the state x<sub>t−1</sub>.
 
+
+In the next sections, our focus will be on:
+1.	Compute Bayes’ rule
+2.	Calculate Bayes' posterior for localization
+3.	Initialize a prior belief state
+4.	Create a function to initialize a prior belief state given landmarks and assumptions
+
+
+## Calculate Localization Posterior:
+
+To continue developing our intuition for this filter and prepare for later coding exercises, some examples for determining posterior probabilities at several pseudo positions x, for a single time step is [Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/Markov%20Localization%20.ipynb) prepared. You can go through to get better Intuition about Calculation of Localization
+
+<p align="right"> <img src="./img/7.jpg" style="right;" alt="alculate Localization Posterior" width="600" height="400"> </p> 
 
 
