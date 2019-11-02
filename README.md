@@ -154,6 +154,14 @@ let's start with an overview of what we want to achieve.
 
 ##  Apply Bayes Rule with Additional Conditions
 
-You already learned the observation vector could be a lot of data, and we do not want to carry the whole observation history to estimate the state beliefs. We aim to estimate state beliefs **bel(x<sub>t</sub>)** without the need to carry our entire observation history. We will accomplish this by manipulating **our posterior (x<sub>t</sub>∣z<sub>1:t−1</sub>,μ<sub>1:t</sub>,m)** obtaining **a recursive state estimator**. For this to work, we must demonstrate that **our current belief bel(x<sub>t</sub>)** can be expressed by the belief **one step earlier bel(x<sub>t−1</sub>)** then use **new data** to update only **the current belief**. This recursive filter is known as the Bayes Localization filter or Markov Localization and enables us to avoid carrying historical observation and motion data. 
+You already learned the observation vector could be a lot of data, and we do not want to carry the whole observation history to estimate the state beliefs. We aim to estimate state beliefs **bel(x<sub>t</sub>)** without the need to carry our entire observation history. We will accomplish this by manipulating **our posterior (x<sub>t</sub>∣z<sub>1:t−1</sub>,μ<sub>1:t</sub>,m)** obtaining **a recursive state estimator**. For this to work, we must demonstrate that **our current belief bel(x<sub>t</sub>)** can be expressed by the belief **one step earlier bel(x<sub>t−1</sub>)** then use **new data** to update only **the current belief** (see below figure). This recursive filter is known as the Bayes Localization filter or Markov Localization and enables us to avoid carrying historical observation and motion data. 
 
+<p align="right"> <img src="./img/8.jpg" style="right;" alt=" recursive filter" width="600" height="400"> </p> 
 
+We will achieve this recursive state estimator using Bayes Rule, the Law of Total Probability, and the Markov Assumption, which involves, making meaningful assumptions about the dependencies between on certain values. 
+
+We take the first step towards our recursive structure by splitting our observation vector **z<sub>1:t</sub>** into **current observationsz<sub>t</sub>  ** and **previous information z<sub>1:t−1</sub>**. The new posterior (see below figure)can then be rewritten as **p(x<sub>t</sub>∣z<sub>t</sub>,z<sub>1:t-1</sub>,u<sub>1:t</sub>,m).**
+
+<p align="right"> <img src="./img/9.jpg" style="right;" alt=" The new posterior" width="600" height="400"> </p> 
+
+We apply Bayes' rule with an additional challenge, the presence of multiple distributions on the right side (likelihood, prior, normalizing constant). To handle multiple conditions within Bayes Rule 
