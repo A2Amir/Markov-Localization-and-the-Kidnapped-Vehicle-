@@ -6,9 +6,9 @@ Markov Localization or Bayes Filter for Localization is a generalized filter for
 
 We generally think of our vehicle location as a probability distribution, each time we move, our distribution becomes more diffuse (wider). We pass our variables (map data, observation data, and control data) into the filter to concentrate (narrow) this distribution, at each time step.
 
-## 1. Localization Posterior: 
+## 1. Localization Posterior
 
-#### 1.1 Introduction
+#### 1.1 Introduction:
 
 What we want to estimate is the transformation between the local coordinate system of the car and the global coordinate system of the map. If we know this transformation, then we also know poses of the car in the global map.
 
@@ -39,7 +39,7 @@ We will never know the state **x<sub>t</sub>** with perfect accuracy. What we wa
 
 <p align="right"> <img src="./img/2.jpg" style="right;" alt="The definition of the posterior distribution for the state x at time t" width="500" height="200"> </p> 
 
-#### 1.2 Explanation
+#### 1.2 Explanation:
 
 
 Localization is all about estimating the probability distribution of the state xt, which is the pose of the car, another condition that all previous observations that from time 1 to t (see above figure). Before we go deeper into math, I want to show you how we define the different input data for a specific 1D localization scenario. This means I will explain and show you how the car is sensing and moving and how the map looks.
@@ -95,14 +95,14 @@ In the next sections, our focus will be on:
 4.	Create a function to initialize a prior belief state given landmarks and assumptions
 
 
-## Calculate Localization Posterior
+#### 2.1 Calculate Localization Posterior:
 
 To continue developing our intuition for this filter and prepare for later coding exercises, some examples for determining posterior probabilities at several pseudo positions x, for a single time step is [Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/Markov%20Localization%20.ipynb) prepared. You can go through to get better Intuition about Calculation of Localization
 
 <p align="right"> <img src="./img/7.jpg" style="right;" alt="alculate Localization Posterior" width="600" height="400"> </p> 
 
 
-#### 2.1 Initialize Belief State
+#### 2.2 Initialize Belief State:
 
 To help develop an intuition for this filter and prepare for later coding exercises, let's walk through the process of initializing our prior belief state. That is, what values should our initial belief state take for each possible position? Let's say we have a 1D map extending from 0 to 25 meters. We have landmarks at x = 5.0, 10.0, and 20.0 meters, with position standard deviation of 1.0 meter. If we know that our car's initial position is at one of these three landmarks, how should we define our initial belief state?
 
@@ -120,7 +120,7 @@ print('%.2E' %Decimal((1.0)/9 ))
 You can find [Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/Markov%20Localization%20.ipynb) other example to get better Intuition.In the next concept, we will implement belief state initialization in C++.
 
 
-#### 2.2 Initialize Priors Function:
+#### 2.3 Initialize Priors Function:
 
 [Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/InitializePriorsFunction.cpp) is created a function in C++ that initializes priors based on the above explained agreement (initial belief state for each position on the map) given landmark positions, a position standard deviation (+/- 1.0), and the assumption that our car is parked next to a landmark.Note that we input a control of moving 1 step but our actual movement could be in the range of 1 +/- control standard deviation. The position standard deviation is the spread in our actual position.
 
@@ -154,7 +154,7 @@ This won't work for real time localizer, In the following, I will present a math
 * handles the same amount of data per update regardless of drive time(amount of data remains constant). 
 let's start with an overview of what we want to achieve. 
 
-#### 4.1 Apply Bayes Rule with Additional Conditions
+#### 4.1 Apply Bayes Rule with Additional Conditions:
 
 You already learned the observation vector could be a lot of data, and we do not want to carry the whole observation history to estimate the state beliefs. We aim to estimate state beliefs **bel(x<sub>t</sub>)** without the need to carry our entire observation history. We will accomplish this by manipulating **our posterior (x<sub>t</sub>∣z<sub>1:t−1</sub>,μ<sub>1:t</sub>,m)** obtaining **a recursive state estimator**. For this to work, we must demonstrate that **our current belief bel(x<sub>t</sub>)** can be expressed by the belief **one step earlier bel(x<sub>t−1</sub>)** then use **new data** to update only **the current belief** (see below figure). This recursive filter is known as the Bayes Localization filter or Markov Localization and enables us to avoid carrying historical observation and motion data. 
 
