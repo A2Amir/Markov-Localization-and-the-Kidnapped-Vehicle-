@@ -174,10 +174,17 @@ To simplify the normalization part, we define the normalizer as Ether. Ether is 
 
 <p align="right"> <img src="./img/11.jpg" style="right;" alt=" To simplify the normalization part" width="600" height="200"> </p> 
 
-If we see again the definition of the motion model, you can understand we have no information where the car was before at time t minus one(x<sub>t-1</sub>). This means, no information about the previous state, x<sub>t-1</sub>.to solve this problem we can use applying the law of total probability.
+If we see again the definition of the motion model, you can understand we have no information where the car was before at time t minus one(x<sub>t-1</sub>). This means, no information about the previous state x<sub>t-1</sub>. To solve this problem we can use applying the law of total probability.
 
-<p align="right"> <img src="./img/12.jpg" style="right;" alt=" pplying the law of total probability" width="600" height="200"> </p> 
+<p align="right"> <img src="./img/12.jpg" style="right;" alt=" applying the law of total probability" width="600" height="200"> </p> 
 
-As seen in the above figurre, we introduce a state x<sub>t-1</sub> and assume the state is given. Then by using the total probanility, the probability distribution of our motion model can be expressed as the integral of p(x<sub>t</sub>) given the previous states(x<sub>t-1</sub>),the previous observations (z<sub>1:t-1</sub>), controls (u<sub>1:t</sub>)and the map multiplied by the probability distribution of  the previous state itself (x<sub>t-1</sub>) over the whole state space x<sub>t-1</sub>. 
+As seen in the above figure, we introduce a state x<sub>t-1</sub> and assume the state is given. Then by using the total probanility, the probability distribution of our motion model can be expressed as the integral of p(x<sub>t</sub>) given the previous states(x<sub>t-1</sub>),the previous observations (z<sub>1:t-1</sub>), controls (u<sub>1:t</sub>)and the map multiplied by the probability distribution of  the previous state itself (x<sub>t-1</sub>) over the whole state space x<sub>t-1</sub>. 
+
+let represent the above situation as a graph to visualize the dependencies between the road blocks, because of introducing x<sub>t-1</sub> we are looking at all possible states of the previous time step and then predict where the car would be in the next time step. 
+
+Since we also have all the other given values (z<sub>1:t-1</sub>,m, u<sub>1:t</sub>) we also use this information to estimate x<sub>t</sub>. The same information is also use to estimate x<sub>t-1</sub>itself. The question is, could we simplify this relation by using meaningful assumptions?
+
+<p align="right"> <img src="./img/13.jpg" style="right;" alt=" dependencies between the road blocks, because of introducing x<sub>t-1</sub>" width="600" height="200"> </p> 
+
 
 
