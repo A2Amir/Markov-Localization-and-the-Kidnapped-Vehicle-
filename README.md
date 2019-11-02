@@ -69,4 +69,21 @@ Localization is all about estimating the probability distribution of the state x
 
 
 
+## Bayes' Filter For Localization
+
+We can apply Bayes' Rule to vehicle localization by passing variables through Bayes' Rule for each time step, as our vehicle moves. This is known as a Bayes' Filter for Localization. The generalized form Bayes' Filter for Localization is shown below.
+
+<p align="right"> <img src="./img/6.jpg" style="right;" alt="Bayes' Filter For Localization" width="600" height="400"> </p> 
+
+With respect to localization, these terms are:
+
+
+1.	P(location∣observation): This is P(a|b), the normalized probability of a position given an observation (posterior). 
+2.	P(observation∣location): This is P(b|a), the probability of an observation given a position (likelihood)
+3.	P(location): This is P(a), the prior probability of a position 
+4.	P(observation): This is P(b), the total probability of an observation
+
+Without going into detail yet, be aware that P(location) is determined by the motion model. The probability returned by the motion model is the product of the transition model probability (the probability of moving from x<sub>t−1</sub> --> x<sub>t</sub> and the probability of the state x<sub>t−1</sub>.
+
+
 
