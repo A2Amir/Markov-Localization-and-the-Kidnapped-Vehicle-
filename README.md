@@ -170,8 +170,14 @@ Because of the presence of multiple conditions within Bayes Rule we use substitu
 
 <p align="right"> <img src="./img/10.jpg" style="right;" alt=" Bayes Rule to determine the right side of Bayes rule" width="600" height="200"> </p> 
 
-To simplify the normalization part, we define the normalizer as Ether. Ether is one of the original normalization term and this term is a sum of the product of the observation and the motion model over all possible states,**x<sub>t</sub><sup>i</sup>**. This also means you only have to define the observation and motion model to estimate the beliefs. 
+To simplify the normalization part, we define the normalizer as Ether. Ether is one of the original normalization term and this term is a sum of the product of the observation and the motion model over all possible states **x<sub>t</sub><sup>i</sup>**. This also means you only have to define the observation and motion model to estimate the beliefs. 
 
 <p align="right"> <img src="./img/11.jpg" style="right;" alt=" To simplify the normalization part" width="600" height="200"> </p> 
+
+If we see again the definition of the motion model, you can understand we have no information where the car was before at time t minus one(x<sub>t-1</sub>). This means, no information about the previous state, x<sub>t-1</sub>.to solve this problem we can use applying the law of total probability (below figure).
+
+<p align="right"> <img src="./img/11.jpg" style="right;" alt=" pplying the law of total probability" width="600" height="200"> </p> 
+
+To solve the problem, we introduce a state x<sub>t-1</sub> and assume the state is given. Then by using the total probanility, the probability distribution of our motion model can be expressed as the integral of p(x<sub>t</sub>) given the previous states(x<sub>t-1</sub>),the previous observations (z<sub>1:t-1</sub>), controls (u<sub>1:t</sub>)and the map multiplied by the probability distribution of  the previous state itself (x<sub>t-1</sub>) over the whole state space x<sub>t-1</sub>. 
 
 
