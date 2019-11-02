@@ -141,7 +141,19 @@ How much data is contained in this Z<sub>1:t</sub>?  Multiplying out gives **432
 
 you have a sense of the quantity of the data that a real car would use if it's updates step took into account all historical observations. Later in next section, I will show you how we can get around this limitation.
 
+## Derivation schema
 
+Up to here, there are two problems if we want to estimate the posterior directly. 
 
+* The first one is the localizer must process on each cycle a lot of data. 
+* The second is the amount of data increases over time. 
+This won't work for real time localizer, In the following, I will present a mathematical proof showing that we can change this so our localizer, 
+* only needs to handle a few bytes on each update (A little data bytes per update) 
+* handles the same amount of data per update regardless of drive time(amount of data remains constant). 
+let's start with an overview of what we want to achieve. 
+
+##  Apply Bayes Rule with Additional Conditions
+
+You already learned the observation vector could be a lot of data, and we do not want to carry the whole observation history to estimate the state beliefs. We aim to estimate state beliefs **bel(x<sub>t</sub>)** without the need to carry our entire observation history. We will accomplish this by manipulating **our posterior (x<sub>t</sub>∣z<sub>1:t−1</sub>,μ<sub>1:t</sub>,m)** obtaining **a recursive state estimator**. For this to work, we must demonstrate that **our current belief bel(x<sub>t</sub>)** can be expressed by the belief **one step earlier bel(x<sub>t−1</sub>)** then use **new data** to update only **the current belief**. This recursive filter is known as the Bayes Localization filter or Markov Localization and enables us to avoid carrying historical observation and motion data. 
 
 
