@@ -108,4 +108,6 @@ Since we know that we are parked next to a landmark, we can set our probability 
 We normalize these values to a total probability of 1.0 by dividing by the total number of positions that are potentially occupied. In this case, that is 9 positions, 3 for each landmark (the landmark position and one position on either side). This gives us a value of 1.11E-01 for positions +/- 1 from our landmarks (1.0/9). So, our initial belief state is:
 
 
+from decimal import Decimal
+'%.2E' %Decimal((1)/9 )
 
