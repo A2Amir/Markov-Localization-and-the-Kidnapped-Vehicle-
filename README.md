@@ -160,7 +160,7 @@ You already learned the observation vector could be a lot of data, and we do not
 
 We will achieve this recursive state estimator using Bayes Rule, the Law of Total Probability, and the Markov Assumption, which involves, making meaningful assumptions about the dependencies between on certain values. 
 
-We take the first step towards our recursive structure by splitting our observation vector **z<sub>1:t</sub>** into **current observationsz<sub>t</sub>  ** and **previous information z<sub>1:t−1</sub>**. The new posterior (see below figure)can then be rewritten as **p(x<sub>t</sub>∣z<sub>t</sub>,z<sub>1:t-1</sub>,u<sub>1:t</sub>,m).**
+We take the first step towards our recursive structure by splitting our observation vector **z<sub>1:t</sub>** into **current observationsz<sub>t</sub>** and **previous information z<sub>1:t−1</sub>**. The new posterior (see below figure)can then be rewritten as **p(x<sub>t</sub>∣z<sub>t</sub>,z<sub>1:t-1</sub>,u<sub>1:t</sub>,m).**
 
 <p align="right"> <img src="./img/9.jpg" style="right;" alt=" The new posterior" width="600" height="400"> </p> 
 
