@@ -197,12 +197,13 @@ We remove the links or connectors between x1 and x3 and x0 and x3, which means x
 <p align="right"> <img src="./img/15.jpg" style="right;" alt="  explain the Markov Assumption" width="600" height="400"> </p> 
 
 
-Since we now assume, that x<sub>t</sub> only depends on the previous state we can rewrite the posterior in the way presented in the above figure if we want to continue this chain, which means to predict the future, we only take x3 into consideration. An example could be a weather forecaster, the weather of tomorrow only depends on today and today includes our previous information and is uncertain, of course. As an important fact we have to assume that we have an initial guess for x0.  x0 must be initialized correctly. Let's go back to our motion model and I will show you how we can benefit from the Markov Assumption for simplifying  the relation?
+Since we now assume, that x<sub>t</sub> only depends on the previous state we can rewrite the posterior in the way presented in the above figure if we want to continue this chain, which means to predict the future, we only take x3 into consideration. An example could be a weather forecaster, the weather of tomorrow only depends on today and today includes our previous information and is uncertain, of course. As an important fact we have to assume that we have an initial guess for x0.  x0 must be initialized correctly. Let's go back to our motion model and I will show you how we can benefit from the Markov Assumption for simplifying  the below relation?
 
+<p align="right"> <img src="./img/13.jpg" style="right;" alt=" dependencies between the road blocks, because of introducing x<sub>t-1</sub>" width="600" height="200"> </p> 
 
 First, I split the control vector into the current control u<sub>t</sub>, and our previous controls u<sub>1:t-1</sub>. 
 And by taking a look to the first term, the probability distribution of p(x<sub>t</sub>) is conditioned by x<sub>t-1</sub>, all previous observations or controls, and the map. we apply the Markov Assumption the first time, since you already know x<sub>t-1</sub>  z<sub>1:t-1 </sub>and u<sub>1:t-1</sub> will not carry  additional information to predict xt in a better way(these values were already used to estimate x<sub>t-1</sub>). This means, x<sub>t</sub> is independent of these values. Because of this fact, we can remove the two conditions (number 1 and 2) in the graph and the posterior distribution (the 1st) of x<sub>t</sub> only depends on x<sub>t-1</sub>, u<sub>t</sub> and the map. This term is called the transition or system model, which moves the previous state in the new one. And as you can see in the system model term,we do not need the whole observation or control history and you can also consider that the map, m does not influence x<sub>t</sub>. It is common practice to neglect m but we keep it.
 
 
-<p align="right"> <img src="./img/16.jpg" style="right;" alt=" the Markov Assumption for simplifying  the relation" width="600" height="500"> </p> 
+<p align="right"> <img src="./img/16.jpg" style="right;" alt=" the Markov Assumption for simplifying  the relation" width="800" height="500"> </p> 
 
