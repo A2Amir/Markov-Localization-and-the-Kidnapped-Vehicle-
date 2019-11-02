@@ -164,4 +164,7 @@ We take the first step towards our recursive structure by splitting our observat
 
 <p align="right"> <img src="./img/9.jpg" style="right;" alt=" The new posterior" width="600" height="400"> </p> 
 
-We apply Bayes' rule with an additional challenge, the presence of multiple distributions on the right side (likelihood, prior, normalizing constant). To handle multiple conditions within Bayes Rule 
+We apply Bayes' rule with an additional challenge, the presence of multiple distributions on the right side (likelihood, prior, normalizing constant). To handle multiple conditions within Bayes Rule  we apply the below presented Bayes Rule to determine the right side of Bayes rule, where the posterior, P(a∣b) is **p(x<sub>t</sub>∣z<sub>t</sub>,z<sub>1:t-1</sub>,u<sub>1:t</sub>,m).**
+
+<p align="right"> <img src="./img/10.jpg" style="right;" alt=" Bayes Rule to determine the right side of Bayes rule" width="600" height="400"> </p> 
+
