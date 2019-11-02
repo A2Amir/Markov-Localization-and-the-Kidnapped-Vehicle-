@@ -180,11 +180,29 @@ If we see again the definition of the motion model, you can understand we have n
 
 As seen in the above figure, we introduce a state x<sub>t-1</sub> and assume the state is given. Then by using the total probanility, the probability distribution of our motion model can be expressed as the integral of p(x<sub>t</sub>) given the previous states(x<sub>t-1</sub>),the previous observations (z<sub>1:t-1</sub>), controls (u<sub>1:t</sub>)and the map multiplied by the probability distribution of  the previous state itself (x<sub>t-1</sub>) over the whole state space x<sub>t-1</sub>. 
 
-let represent the above situation as a graph to visualize the dependencies between the road blocks, because of introducing x<sub>t-1</sub> we are looking at all possible states of the previous time step and then predict where the car would be in the next time step. 
-
-Since we also have all the other given values (z<sub>1:t-1</sub>,m, u<sub>1:t</sub>) we also use this information to estimate x<sub>t</sub>. The same information is also use to estimate x<sub>t-1</sub>itself. The question is, could we simplify this relation by using meaningful assumptions?
+let represent the above situation as a graph to visualize the dependencies between the road blocks, because of introducing x<sub>t-1</sub> we are looking at all possible states of the previous time step and then predict where the car would be in the next time step. Since we also have all the other given values (z<sub>1:t-1</sub>,m, u<sub>1:t</sub>) we also use this information to estimate x<sub>t</sub>. The same information is also use to estimate x<sub>t-1</sub>itself. The question is, could we simplify this relation by using meaningful assumptions?
 
 <p align="right"> <img src="./img/13.jpg" style="right;" alt=" dependencies between the road blocks, because of introducing x<sub>t-1</sub>" width="600" height="200"> </p> 
 
 
+Before explaining of how we can simplify it, I want to introduce the first order Markov Assumption. Assume you want to estimate the posterior distribution of p(x<sub>t</sub>) given our previous states (x<sub>t-1</sub>) and you have no observations or controls. This is a pretty simple example but it works fine to explain the Markov Assumption. You can write this distribution as the following: This relation can be represented as a chain.
+
+<p align="right"> <img src="./img/14.jpg" style="right;" alt="  explain the Markov Assumption" width="600" height="400"> </p> 
+
+For example, to estimate x1, we only use x0 and to estimate x2, we use x1 and x0 and finally, for x3 we use x2, x1, and x0. In this example, the Markov Assumption postulates that x2 is the best predictor for x3.This means, that the other states, x1 and x0 or future states carry no additional information to predict x3 in a better way far more accurately. We also say the state x2 is complete.
+
+We remove the links or connectors between x1 and x3 and x0 and x3, which means x3 is independent of x0 and x1. It only depends on x2. Of course, for x2, it is the same and you can remove the connections. 
+
+
+<p align="right"> <img src="./img/15.jpg" style="right;" alt="  explain the Markov Assumption" width="600" height="400"> </p> 
+
+
+Since we now assume, that x<sub>t</sub> only depends on the previous state we can rewrite the posterior in the way presented in the above figure if we want to continue this chain, which means to predict the future, we only take x3 into consideration. An example could be a weather forecaster, the weather of tomorrow only depends on today and today includes our previous information and is uncertain, of course. As an important fact we have to assume that we have an initial guess for x0.  x0 must be initialized correctly. Let's go back to our motion model and I will show you how we can benefit from the Markov Assumption for simplifying  the relation?
+
+
+First, I split the control vector into the current control u<sub>t</sub>, and our previous controls u<sub>1:t-1</sub>. 
+And by taking a look to the first term, the probability distribution of p(x<sub>t</sub>) is conditioned by x<sub>t-1</sub>, all previous observations or controls, and the map. we apply the Markov Assumption the first time, since you already know x<sub>t-1</sub>  z<sub>1:t-1 </sub>and u<sub>1:t-1</sub> will not carry  additional information to predict xt in a better way(these values were already used to estimate x<sub>t-1</sub>). This means, x<sub>t</sub> is independent of these values. Because of this fact, we can remove the two conditions (number 1 and 2) in the graph and the posterior distribution (the 1st) of x<sub>t</sub> only depends on x<sub>t-1</sub>, u<sub>t</sub> and the map. This term is called the transition or system model, which moves the previous state in the new one. And as you can see in the system model term,we do not need the whole observation or control history and you can also consider that the map, m does not influence x<sub>t</sub>. It is common practice to neglect m but we keep it.
+
+
+<p align="right"> <img src="./img/16.jpg" style="right;" alt=" the Markov Assumption for simplifying  the relation" width="600" height="500"> </p> 
 
