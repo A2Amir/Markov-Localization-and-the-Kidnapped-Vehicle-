@@ -222,6 +222,19 @@ The amazing thing is that we have a recursive update formula and can now use the
 
  <p align="right"> <img src="./img/19.jpg" style="right;" alt="  we have a recursive update formula " width="600" height="400"> </p> 
  
- Finally, we replace the integral by a sum over all x<sub>i</sub> because we have a discrete localization scenario in this case, to get the same formula  for localization. The process of predicting x<sub>t</sub> with a previous beliefs (x<sub>t−1</sub>) and the transition model is technically a convolution. If you take a look to the formula again, it is essential that the belief at x<sub>t=0</sub> is initialized with a meaningful assumption. It depends on the localization scenario how you set the belief or in other words, how you initialize your filter. For example, you can use GPS to get a coarse estimate of your location.
+ Finally, we replace the integral by a sum over all x<sup>i</sup> because we have a discrete localization scenario in this case, to get the same formula  for localization. The process of predicting x<sub>t</sub> with a previous beliefs (x<sub>t−1</sub>) and the transition model is technically a convolution. If you take a look to the formula again, it is essential that the belief at x<sub>t=0</sub> is initialized with a meaningful assumption. It depends on the localization scenario how you set the belief or in other words, how you initialize your filter. For example, you can use GPS to get a coarse estimate of your location.
  
-Let's sum up to this point. You learned again,
+
+let's sum up to the points You learned:
+
+* How to apply the law of total probability by including the new variable, x_t minus one. 
+* You also learned about the Markov Assumption, which is very important for probabilistic reasoning. 
+* Finally, you learned how to derive the recursive filter structure. 
+
+ <p align="right"> <img src="./img/20.jpg" style="right;" alt="let's sum up to the points You learned" width="600" height="400"> </p> 
+
+
+Next, you will implement a motion model in C++. You will also learn how to initialize our localizer, which means, defining the belief of the state at the very beginning.
+ 
+
+
