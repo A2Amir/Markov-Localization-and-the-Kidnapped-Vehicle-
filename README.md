@@ -235,6 +235,37 @@ let's sum up to the points You learned:
 
 
 Next, you will implement a motion model in C++. You will also learn how to initialize our localizer, which means, defining the belief of the state at the very beginning.
+
+
  
+
+## 5. Implementation for Motion Model
+
+Before you start coding, you will need some details to help with implementing the prediction step. At the very beginning, the assumptions are: 
+
+* The car is parked at a tree or a street lamp plus/minus one meter. 
+* The transition model is controlled only by x<sub>t-1<sub> and u<sub>t<sub>. Here we assume, the transition model is independent from the map. 
+ 
+* Remember that ut is a direct move pointed in driving direction. 
+
+* The transition model is defined by the 1D normal distribution defined by the mean ut and sigma u<sub>t<sub>, Here, the sigma of u<sub>t<sub> is one meter. 
+
+•	The state space range is from zero to 99 meters with a one-meter step resolution. 
+
+
+ <p align="right"> <img src="./img/21.jpg" style="right;" alt=" some details to help with implementing the prediction step" width="600" height="400"> </p> 
+
+
+#### 5.1 Determine Probabilities
+
+
+Now you have all information to implement the motion model but before implementing the motion model, we need a function to which we can pass model parameters/values and return a probability. Fortunately, we can use a normalized probability density function (PDF). 
+
+[Normpdf](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/DetermineProbabilities.cpp) is a C++ function in which the below presented Gaussian Distribution is implemented and accepts a parameter (mu), a value (x) and a standard deviation (std), returning a probability.
+
+
+ <p align="right"> <img src="./img/22.jpg" style="right;" alt=" presented Gaussian Distribution" width="400" height="400"> </p> 
+
+Using normpdf we are going to determine transition model probabilities. Specifically, we need to determine the probability of moving from x<sub>t−1</sub> ---- a control parameter---> x<sub>t</sub>. For example, if our pseudo position (x<sub>t</sub>) is 8 and our pre-pseudo position is 5 (x<sub>t−1</sub>), the sample value will be 3, and our transition will be from x<sub>t−1</sub> --- 3 --> x<sub>t</sub>. Or Given pseudo position x<sub>t</sub> and a control parameter of 1 (move 1 unit each time step), the pre-pseudo position x<sub>t−1</sub> that maximizes our probability is 1.
 
 
