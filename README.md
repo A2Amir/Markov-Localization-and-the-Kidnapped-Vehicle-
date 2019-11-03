@@ -210,3 +210,18 @@ By taking a look to the first term, the probability distribution of p(x<sub>t</s
 By looking at the second term, which describes a posterior distribution of x<sub>t-1</sub> given all previous observations or controls, and the map, we use a Markov Assumption again. 
 We assume that u<sub>t</sub> tells us nothing about x<sub>t-1</sub> because u<sub>t</sub>  is in the future then we ignore u<sub>t</sub> to estimate the state x<sub>t-1</sub> and we remove the connection (3). Based on this assumption,we rewrite the motion model again (the 2nd). 
 
+We have achieved a very important step towards the final form of our recursive state estimator. Let’s see why. If we rewrite the second term (see below figure) in our integral to split z<sub>1-t</sub> to z<sub>t-1</sub> and z<sub>t-2</sub> we arrive at a function that is exactly the belief from the previous time step, namely bel(x<sub>t-1</sub>).
+
+<p align="right"> <img src="./img/17.jpg" style="right;" alt="we arrive at a function that is exactly the belief from the previous time step" width="600" height="400"> </p> 
+
+ Now we can rewrite out integral as the belief of x<sub>t-1</sub>.
+ <p align="right"> <img src="./img/18.jpg" style="right;" alt=" rewrite out integral as the belief " width="600" height="400"> </p> 
+ 
+
+The amazing thing is that we have a recursive update formula and can now use the estimated state from the previous time step to predict the current state at t. This is a critical step in a recursive Bayesian filter because it renders us independent from the entire observation and control history. So in the graph structure, we will replace the previous state terms (highlighted in above figure) with our belief of the state at x<sub>t−1</sub>, which leads to a new structure presented in the figure below.
+
+ <p align="right"> <img src="./img/19.jpg" style="right;" alt="  we have a recursive update formula " width="600" height="400"> </p> 
+ 
+ Finally, we replace the integral by a sum over all x<sub>i</sub> because we have a discrete localization scenario in this case, to get the same formula  for localization. The process of predicting x<sub>t</sub> with a previous beliefs (x<sub>t−1</sub>) and the transition model is technically a convolution. If you take a look to the formula again, it is essential that the belief at x<sub>t=0</sub> is initialized with a meaningful assumption. It depends on the localization scenario how you set the belief or in other words, how you initialize your filter. For example, you can use GPS to get a coarse estimate of your location.
+ 
+Let's sum up to this point. You learned again,
