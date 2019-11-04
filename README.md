@@ -276,7 +276,7 @@ Recall that we derived the following recursive structure for the motion model:
  
  and that we will implement this in the discretized form:
  
-  <p align="right"> <img src="./img/24.jpg" style="right;" alt=" the discretized form" width="400" height="200"> </p> 
+  <p align="right"> <img src="./img/24.jpg" style="right;" alt=" the discretized form" width="400" height="150"> </p> 
 
 Let's consider again what the summation above is doing - calculating the probability that the vehicle is now at a given location x<sub>t</sub>.
 How is the summation doing that? It's looking at each prior location where the vehicle could have been, x<sub>t-1</sub> then the summation iterates over every possible prior location x<sup>(1)</sup><sub>t−1</sub>...x<sup>(n)</sup><sub>t−1</sub>. For each possible prior location in that list, x<sup>(i)</sup><sub>t−1</sub>, the summation yields the total probability that the vehicle really did start at that prior location and that it wound up at x<sub>t</sub>.
