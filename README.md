@@ -264,26 +264,26 @@ Now you have all information to implement the motion model but before implementi
 [Normpdf](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/DetermineProbabilities.cpp) is a C++ function in which the below presented Gaussian Distribution is implemented and accepts a parameter (mu), a value (x) and a standard deviation (std), returning a probability.
 
 
- <p align="right"> <img src="./img/22.jpg" style="right;" alt=" presented Gaussian Distribution" width="400" height="400"> </p> 
+ <p align="right"> <img src="./img/22.jpg" style="right;" alt=" presented Gaussian Distribution" width="400" height="300"> </p> 
 
 Using normpdf we are going to determine transition model probabilities. Specifically, we need to determine the probability of moving from x<sub>t−1</sub> ---- a control parameter---> x<sub>t</sub>. For example, if our pseudo position (x<sub>t</sub>) is 8 and our pre-pseudo position is 5 (x<sub>t−1</sub>), the sample value will be 3, and our transition will be from x<sub>t−1</sub> --- 3 --> x<sub>t</sub>. Or Given pseudo position x<sub>t</sub> and a control parameter of 1 (move 1 unit each time step), the pre-pseudo position x<sub>t−1</sub> that maximizes our probability is 1.
 
-### 5.2 Motion Model Probabiity:
+#### 5.2 Motion Model Probabiity:
 
 Recall that we derived the following recursive structure for the motion model:
 
- <p align="right"> <img src="./img/23.jpg" style="right;" alt=" recursive structure for the motion model" width="400" height="400"> </p> 
+ <p align="right"> <img src="./img/23.jpg" style="right;" alt=" recursive structure for the motion model" width="400" height="150"> </p> 
  
  and that we will implement this in the discretized form:
  
-  <p align="right"> <img src="./img/24.jpg" style="right;" alt=" the discretized form" width="400" height="400"> </p> 
+  <p align="right"> <img src="./img/24.jpg" style="right;" alt=" the discretized form" width="400" height="200"> </p> 
 
 Let's consider again what the summation above is doing - calculating the probability that the vehicle is now at a given location x<sub>t</sub>.
-How is the summation doing that? It's looking at each prior location where the vehicle could have been, x<sub>t-1</sub> then the summation iterates over every possible prior location x<sub>t−1</sub><sup>(1)</sup>...x<sub>t−1</sub><sup>(n)</sup>. For each possible prior location in that list, x<sub>t−1</sub><sup>(i)</sup>, the summation yields the total probability that the vehicle really did start at that prior location and that it wound up at x<sub>t</sub>.
+How is the summation doing that? It's looking at each prior location where the vehicle could have been, x<sub>t-1</sub> then the summation iterates over every possible prior location x<sub>t−1</sub><sup>(1)</sup>...x<sup>(n)</sup><sub>t−1</sub>. For each possible prior location in that list, x<sup>(i)</sup><sub>t−1</sub>, the summation yields the total probability that the vehicle really did start at that prior location and that it wound up at x<sub>t</sub>.
 
 That now raises the question, how do we calculate the individual probability that the vehicle really did start at that prior location and that it wound up at x<sub>t</sub>, for each possible starting position x<sub>t-1</sub>? That's where each individual element of the summation contributes. The likelihood of starting at x<sub>t-1</sub> and arriving at x is simply p(x<sub>t</sub>∣x<sub>t-1</sub>)∗p(x<sub>t-1</sub>).
 
-We can say the same thing, using different notation and incorporating all of our knowledge about the world, by writing: p(x<sub>t</sub>∣x<sub>t-1</sub><sup>(i)</sup>,u<sub>t</sub>,m)∗bel(x<sub>t-1</sub><sup>(i)</sup>)
-From the equation above we can see that our final position probability is the sum of n discretized motion model calculations, where each calculation is the product of the 'i'th transition probability, p(x<sub>t</sub>∣x<sub>t-1</sub><sup>(i)</sup>,u<sub>t</sub>,m) and 'i'th belief state, bel(x<sub>t-1</sub><sup>(i)</sup>).
+We can say the same thing, using different notation and incorporating all of our knowledge about the world, by writing: p(x<sub>t</sub>∣x<sup>(i)</sup><sub>t-1</sub>,u<sub>t</sub>,m)∗bel(x<sup>(i)</sup><sub>t-1</sub>)
+From the equation above we can see that our final position probability is the sum of n discretized motion model calculations, where each calculation is the product of the 'i'th transition probability, p(x<sub>t</sub>∣x<sub>t-1</sub><sup>(i)</sup>,u<sub>t</sub>,m) and 'i'th belief state, bel(x<sup>(i)</sup><sub>t-1</sub>).
 
 
