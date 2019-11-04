@@ -287,4 +287,4 @@ We can say the same thing, using different notation and incorporating all of our
 From the equation above we can see that our final position probability is the sum of n discretized motion model calculations, where each calculation is the product of the 'i'th transition probability, p(x<sub>t</sub>∣x<sub>t-1</sub><sup>(i)</sup>,u<sub>t</sub>,m) and 'i'th belief state, bel(x<sup>(i)</sup><sub>t-1</sub>).Some examples of the calulation of Motion Model Probabiity are [here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/Python/Markov%20Localization%20.ipynb) explained
 In the next concept we will implement the motion model in C++.
 
-  <p align="right"> <img src="./img/25.jpg" style="right;" alt="  the motion model" width="600" height="300"> </p> 
+  <p align="center"> <img src="./img/25.jpg" style="right;" alt="  the motion model" width="400" height="300"> </p> 
