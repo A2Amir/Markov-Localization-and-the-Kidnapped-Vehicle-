@@ -293,8 +293,24 @@ In the next concept we will implement the motion model in C++.
 #### 5.3 [Coding the Motion Model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp):
 
 we have manually calculated each step for determining the motion model probability, these steps are implemented in a function  called the [motion_model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp), which steps through each position x and prints the results to stdout. the motion_model function involves:
-For each xt :
-* Calculate the transition probability for each potential value xt−1 
-* Calculate the discrete motion model probability by multiplying the transition model probability by the belief state (prior) for xt−1 
+For each x<sub>t</sub> :
+* Calculate the transition probability for each potential value x<sub>t−1</sub>.
+* Calculate the discrete motion model probability by multiplying the transition model probability by the belief state (prior) for x<sub>t−1</sub> 
 * Return total probability (sum) of each discrete probability
+
+## 6. Implementation for observation Model
+
+
+#### 6.1 Observation Model Introduction:
+In the previous lesson, you learned about the motion model and how to implement it in C++. 
+Now I go back to the math and I will finalize the base filter. As a reminder, you can see below again the target function with the motion model, the observation model, and our normalizer. We now learn more about the observation model. The observation model describes the probability distribution of the observations set, Z<sub>t</sub>, given the state, x<sub>t</sub>, our previous observations or controls, and the map. we can also represent a relationship as a diagram or graph.
+
+  <p align="right"> <img src="./img/26.jpg" style="right;" alt="  a diagram " width="600" height="400"> </p> 
+  
+  
+x<sub>t</sub> is unknown and points to z<sub>t</sub>, as well as all other values like the controls, the map, and the previous observations, to simplify the observation model, We can use the Markov Assumption.Since you assume you're now this tagged x<sub>t</sub>, it doesn't really matter what the car observes and how it moves before x<sub>t</sub>. These values(z<sub>1:t-1</sub>,u<sub>1:t</sub>) were already used to estimate x<sub>t</sub>, and that z<sub>t</sub> will not benefit from these values. This means, we assume that that z<sub>t</sub> is independent of all previous observations and the controls. Again, this is an example of the use of the Markov Assumption. 
+
+  <p align="right"> <img src="./img/27.jpg" style="right;" alt="  independent of all previous observations and the controls" width="600" height="200"> </p> 
+
+
 
