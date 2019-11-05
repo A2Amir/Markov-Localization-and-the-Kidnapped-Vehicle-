@@ -351,7 +351,7 @@ We have accomplished a lot.
 As seen above, the Bayes Localization Filter dependencies can be represented as a graph, by combining our sub-graphs. To estimate the new state x at t we only need to consider the previous belief state, the current observations and controls, and the map.It is a common practice to represent this filter without the belief x<sub>t</sub>  and to remove the map from the motion model. Ultimately we define bel(x<sub>t</sub>) as the following expression.
 
 
- <p align="right"> <img src="./img/30.jpg" style="right;" alt="  the Bayes Localization Filter " width="400" height="200"> </p> 
+ <p align="right"> <img src="./img/31.jpg" style="right;" alt="  the Bayes Localization Filter " width="400" height="200"> </p> 
 
 #### 7.1 Bayes Filter Theory Summary:
 
@@ -360,10 +360,10 @@ The image below sums up the core achievements of this lesson.
 * That means this framework allows us to use the previous state (state at t-1) to estimate a new state (state at t) using only current observations and controls (observations and control at t), rather than the entire data history (data from 0:t).
 
 
- <p align="right"> <img src="./img/31.jpg" style="right;" alt="ayes Filter Theory Summary " width="600" height="400"> </p> 
+ <p align="right"> <img src="./img/32.jpg" style="right;" alt="ayes Filter Theory Summary " width="600" height="400"> </p> 
 
 The motion model describes the prediction step of the filter while the observation model is the update step. The state estimation using the Bayes filter is dependent upon the interaction between prediction (motion model) and update (observation model steps) and all the localization methods discussed so far are realizations of the Bayes filter.
 
- <p align="right"> <img src="./img/32.jpg" style="right;" alt=" realizations of the Bayes filter " width="600" height="400"> </p> 
+ <p align="right"> <img src="./img/33.jpg" style="right;" alt=" realizations of the Bayes filter " width="600" height="400"> </p> 
 
 In the next few sections, we will learn how to estimate pseudo ranges, calculate the observation model probability, and complete the implementation of the observation model in C++.
