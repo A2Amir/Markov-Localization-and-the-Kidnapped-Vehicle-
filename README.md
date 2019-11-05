@@ -316,3 +316,22 @@ x<sub>t</sub> is unknown and points to z<sub>t</sub>, as well as all other value
 As you remember that z<sub>t</sub> could be a vector of multiple observations, this means, we rewrite the observation model in the below way. Now we assume that the noise behavior of the individual range values z<sub>t</sub><sup>1</sup> to z<sub>t</sub> <sup>K</sup> is independent. This also means that all observations are independent. It allows us to represent a observation model as a product of the individual probability distributions of each single range measurement. 
  
   <p align="right"> <img src="./img/28.jpg" style="right;" alt="  probability distributions of each single range measurement" width="600" height="300"> </p> 
+  
+ **Now the question is, how we should define the observation model for a range measurement?**
+ 
+In general, there are a lot of different observation models, because we have a lot of different sensors like lidars, cameras, radars, or ultransonic sensors and each sensor has a specific noise behavior and performance. The observation model also depends on the type of the map. You can have dense 2D or 3D grid maps or sparse feature-based maps. In our 1D example(see below), we assume that our sensor measures that range to the n closest objects in driving direction. As shown below, the car measures 19 meters to the first and 37 meters to the second object. As stated before, the objects represents the landmarks in our map. 
+
+Here
+* we assume the observation noise can be modeled as a Gaussian with a standard deviation of one meter.
+* We also assume that our sensor can measure in a range between zero and 100 meters. 
+* To implement observation model, you use a given x<sub>t</sub> and the given map to estimate so called pseudo ranges. 
+* These pseudo ranges represent a true range values and as assumption, your car would stand at the specific position x<sub>t</sub> on the map.
+
+
+For example, assume your car is standing here at position 20, and would observe five meters to the first, 11 meters to the second, 39 metres to the third, and 57 meters to the last landmark. Compared to the real observations, the position(B) seems very unlikely. Observation would rather fit to a position around 40. Based on this example, the observation model for a single range measurement is defined by the probability of the following normal distribution, defined by the mean z<sup>*K </sup><sup>t</sub> and our sigma. 
+ 
+ <p align="right"> <img src="./img/29.jpg" style="right;" alt="  following normal distribution, defined by the mean" width="600" height="400"> </p> 
+
+
+These insights allows you to implement observation model in C++. But before you go back to the coding part,I would like to finalize the theory of the base localization further. 
+
