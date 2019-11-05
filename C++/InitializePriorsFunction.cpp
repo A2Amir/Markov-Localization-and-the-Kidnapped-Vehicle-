@@ -15,7 +15,6 @@ int main() {
   // initialize landmarks
   std::vector<float> landmark_positions {5, 10, 20};
   // initialize priors
-  landmark_positions.push_back(30);
   vector<float> priors = initialize_priors(map_size, landmark_positions,position_stdev);
 
   // print values to stdout
@@ -28,7 +27,8 @@ int main() {
 
 vector<float> initialize_priors(int map_size, vector<float>  landmark_positions,float position_stdev)
 {
- vector<flaot> priors(map_size,0.0);
+ vector<float> priors(map_size, 0.0);
+
  // set each landmark positon +/-1 to 1.0/9.0 (9 possible postions)
  float norm_term = landmark_positions.size() * (position_stdev * 2 + 1);
   for (int i=0; i < landmark_positions.size(); ++i) {
