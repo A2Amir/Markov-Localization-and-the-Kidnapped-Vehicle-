@@ -351,7 +351,7 @@ We have accomplished a lot.
 As seen above, the Bayes Localization Filter dependencies can be represented as a graph, by combining our sub-graphs. To estimate the new state x at t we only need to consider the previous belief state, the current observations and controls, and the map.It is a common practice to represent this filter without the belief x<sub>t</sub>  and to remove the map from the motion model. Ultimately we define bel(x<sub>t</sub>) as the following expression.
 
 
- <p align="right"> <img src="./img/31.jpg" style="right;" alt="  the Bayes Localization Filter " width="400" height="200"> </p> 
+ <p align="center"> <img src="./img/31.jpg" style="right;" alt="  the Bayes Localization Filter " width="400" height="75"> </p> 
 
 #### 7.1 Bayes Filter Theory Summary:
 
