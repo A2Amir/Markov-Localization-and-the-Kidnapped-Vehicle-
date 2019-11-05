@@ -360,10 +360,10 @@ The image below sums up the core achievements of this lesson.
 * That means this framework allows us to use the previous state (state at t-1) to estimate a new state (state at t) using only current observations and controls (observations and control at t), rather than the entire data history (data from 0:t).
 
 
- <p align="right"> <img src="./img/32.jpg" style="right;" alt="ayes Filter Theory Summary " width="600" height="400"> </p> 
+ <p align="right"> <img src="./img/32.jpg" style="right;" alt="ayes Filter Theory Summary " width="600" height="300"> </p> 
 
 The motion model describes the prediction step of the filter while the observation model is the update step. The state estimation using the Bayes filter is dependent upon the interaction between prediction (motion model) and update (observation model steps) and all the localization methods discussed so far are realizations of the Bayes filter.
 
- <p align="right"> <img src="./img/33.jpg" style="right;" alt=" realizations of the Bayes filter " width="600" height="400"> </p> 
+ <p align="right"> <img src="./img/33.jpg" style="right;" alt=" realizations of the Bayes filter " width="600" height="300"> </p> 
 
 In the next few sections, we will learn how to estimate pseudo ranges, calculate the observation model probability, and complete the implementation of the observation model in C++.
