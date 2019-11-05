@@ -310,7 +310,9 @@ Now I go back to the math and I will finalize the base filter. As a reminder, yo
   
 x<sub>t</sub> is unknown and points to z<sub>t</sub>, as well as all other values like the controls, the map, and the previous observations, to simplify the observation model, We can use the Markov Assumption.Since you assume you're now this tagged x<sub>t</sub>, it doesn't really matter what the car observes and how it moves before x<sub>t</sub>. These values(z<sub>1:t-1</sub>,u<sub>1:t</sub>) were already used to estimate x<sub>t</sub>, and that z<sub>t</sub> will not benefit from these values. This means, we assume that that z<sub>t</sub> is independent of all previous observations and the controls. Again, this is an example of the use of the Markov Assumption. 
 
-  <p align="right"> <img src="./img/27.jpg" style="right;" alt="  independent of all previous observations and the controls" width="600" height="200"> </p> 
+  <p align="right"> <img src="./img/27.jpg" style="right;" alt="  independent of all previous observations and the controls" width="600" height="250"> </p> 
 
 
-
+As you remember that z<sub>t</sub> could be a vector of multiple observations, this means, we rewrite the observation model in the below way. Now we assume that the noise behavior of the individual range values z<sub>t</sub><sup>1</sup> to z<sub>t</sub> <sup>K</sup> is independent. This also means that all observations are independent. It allows us to represent a observation model as a product of the individual probability distributions of each single range measurement. 
+ 
+  <p align="right"> <img src="./img/28.jpg" style="right;" alt="  probability distributions of each single range measurement" width="600" height="300"> </p> 
