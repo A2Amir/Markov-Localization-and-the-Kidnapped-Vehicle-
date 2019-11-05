@@ -288,3 +288,13 @@ From the equation above we can see that our final position probability is the su
 In the next concept we will implement the motion model in C++.
 
   <p align="center"> <img src="./img/25.jpg" style="right;" alt="  the motion model" width="400" height="300"> </p> 
+  
+  
+#### 5.3 [Coding the Motion Model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp):
+
+we have manually calculated each step for determining the motion model probability, these steps are implemented in a function  called the [motion_model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp), which steps through each position x and prints the results to stdout. the motion_model function involves:
+For each xt :
+* Calculate the transition probability for each potential value xt−1 
+* Calculate the discrete motion model probability by multiplying the transition model probability by the belief state (prior) for xt−1 
+* Return total probability (sum) of each discrete probability
+
