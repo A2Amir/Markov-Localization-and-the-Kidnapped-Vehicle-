@@ -301,7 +301,6 @@ For each x<sub>t</sub> :
 ## 6. Implementation for observation Model
 
 
-#### 6.1 Observation Model Introduction:
 In the previous lesson, you learned about the motion model and how to implement it in C++. 
 Now I go back to the math and I will finalize the base filter. As a reminder, you can see below again the target function with the motion model, the observation model, and our normalizer. We now learn more about the observation model. The observation model describes the probability distribution of the observations set, Z<sub>t</sub>, given the state, x<sub>t</sub>, our previous observations or controls, and the map. we can also represent a relationship as a diagram or graph.
 
@@ -335,3 +334,36 @@ For example, assume your car is standing here at position 20, and would observe 
 
 These insights allows you to implement observation model in C++. But before you go back to the coding part,I would like to finalize the theory of the base localization further. 
 
+## 7. Summerize the Bayes Localization Filter
+
+We have accomplished a lot. 
+* Starting with the generalized form of Bayes Rule we expressed our posterior, the belief of x at t as η (normalizer) multiplied with the observation model and the motion model. 
+* We simplified the observation model using the Markov assumption to determine the probability of z at time t, given only x at time t, and the map.
+* We expressed the motion model as a recursive state estimator using the Markov assumption and the law of total probability, resulting in a model that includes our belief at t – 1 and our transition model.
+
+* Finally we derived the general Bayes Filter for Localization (Markov Localization) by expressing our belief of x at t as a simplified version of our original posterior expression (top equation), η(normalizer)  multiplied by the simplified observation model and the motion model. Here the motion model is written as bel<sup>^</sup>, a prediction model.
+
+ 
+ <p align="right"> <img src="./img/30.jpg" style="right;" alt="  Summerize the Bayes Localization Filter" width="600" height="400"> </p> 
+
+
+
+As seen above, the Bayes Localization Filter dependencies can be represented as a graph, by combining our sub-graphs. To estimate the new state x at t we only need to consider the previous belief state, the current observations and controls, and the map.It is a common practice to represent this filter without the belief x<sub>t</sub>  and to remove the map from the motion model. Ultimately we define bel(x<sub>t</sub>) as the following expression.
+
+
+ <p align="right"> <img src="./img/30.jpg" style="right;" alt="  the Bayes Localization Filter " width="400" height="200"> </p> 
+
+#### 7.1 Bayes Filter Theory Summary:
+
+The image below sums up the core achievements of this lesson.
+* The Bayes Localization Filter Markov Localization is a general framework for recursive state estimation.
+* That means this framework allows us to use the previous state (state at t-1) to estimate a new state (state at t) using only current observations and controls (observations and control at t), rather than the entire data history (data from 0:t).
+
+
+ <p align="right"> <img src="./img/31.jpg" style="right;" alt="ayes Filter Theory Summary " width="600" height="400"> </p> 
+
+The motion model describes the prediction step of the filter while the observation model is the update step. The state estimation using the Bayes filter is dependent upon the interaction between prediction (motion model) and update (observation model steps) and all the localization methods discussed so far are realizations of the Bayes filter.
+
+ <p align="right"> <img src="./img/32.jpg" style="right;" alt=" realizations of the Bayes filter " width="600" height="400"> </p> 
+
+In the next few sections, we will learn how to estimate pseudo ranges, calculate the observation model probability, and complete the implementation of the observation model in C++.
