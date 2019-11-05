@@ -227,7 +227,7 @@ The amazing thing is that we have a recursive update formula and can now use the
 
 let's sum up to the points You learned:
 
-* How to apply the law of total probability by including the new variable, x_t minus one. 
+* How to apply the law of total probability by including the new variable, x<sub>t-1</sub>. 
 * You also learned about the Markov Assumption, which is very important for probabilistic reasoning. 
 * Finally, you learned how to derive the recursive filter structure. 
 
@@ -244,13 +244,13 @@ Next, you will implement a motion model in C++. You will also learn how to initi
 Before you start coding, you will need some details to help with implementing the prediction step. At the very beginning, the assumptions are: 
 
 * The car is parked at a tree or a street lamp plus/minus one meter. 
-* The transition model is controlled only by x<sub>t-1<sub> and u<sub>t<sub>. Here we assume, the transition model is independent from the map. 
+* The transition model is controlled only by x<sub>t-1</sub> and u<sub>t</sub>. Here we assume, the transition model is independent from the map. 
  
-* Remember that ut is a direct move pointed in driving direction. 
+* Remember that u<sub>t</sub> is a direct move pointed in driving direction. 
 
-* The transition model is defined by the 1D normal distribution defined by the mean ut and sigma u<sub>t<sub>, Here, the sigma of u<sub>t<sub> is one meter. 
+* The transition model is defined by the 1D normal distribution defined by the mean ut and sigma u<sub>t</sub>, Here, the sigma of u<sub>t</sub> is one meter. 
 
-•	The state space range is from zero to 99 meters with a one-meter step resolution. 
+* The state space range is from zero to 99 meters with a one-meter step resolution. 
 
 
  <p align="right"> <img src="./img/21.jpg" style="right;" alt=" some details to help with implementing the prediction step" width="600" height="400"> </p> 
@@ -328,7 +328,7 @@ Here
 * These pseudo ranges represent a true range values and as assumption, your car would stand at the specific position x<sub>t</sub> on the map.
 
 
-For example, assume your car is standing here at position 20, and would observe five meters to the first, 11 meters to the second, 39 metres to the third, and 57 meters to the last landmark. Compared to the real observations, the position(B) seems very unlikely. Observation would rather fit to a position around 40. Based on this example, the observation model for a single range measurement is defined by the probability of the following normal distribution, defined by the mean z<sup>*K </sup><sup>t</sub> and our sigma. 
+For example, assume your car is standing here at position 20, and would observe five meters to the first, 11 meters to the second, 39 metres to the third, and 57 meters to the last landmark. Compared to the real observations, the position(B) seems very unlikely. Observation would rather fit to a position around 40. Based on this example, the observation model for a single range measurement is defined by the probability of the following normal distribution, defined by the mean z<sup>*K </sup><sub>t</sub> and our sigma. 
  
  <p align="right"> <img src="./img/29.jpg" style="right;" alt="  following normal distribution, defined by the mean" width="600" height="400"> </p> 
 
