@@ -430,15 +430,10 @@ In the Coding_Full_Filter function is first implemented the Bayes' localization 
 * extract sensor observations
 
 * for each pseudo-position:
- * get the motion model probability
-
- * determine pseudo ranges
-
- * get the observation model probability
-
- * use the motion and observation model probabilities to calculate the posterior probability
-
+  * get the motion model probability
+  * determine pseudo ranges
+  * get the observation model probability
+  * use the motion and observation model probabilities to calculate the posterior probability
 * normalize posteriors (see helpers.h for a normalization function)
-
 * update priors (priors --> posteriors)
 
