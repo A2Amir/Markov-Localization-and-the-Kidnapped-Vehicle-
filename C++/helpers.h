@@ -2,6 +2,7 @@
 #define HELP_FUNCTIONS_H
 
 #include <math.h>
+#include <vector>
 
 class Helpers {
  public:
@@ -16,6 +17,30 @@ class Helpers {
    */
   static float normpdf(float x, float mu, float std) {
     return (STATIC_ONE_OVER_SQRT_2PI/std)*exp(-0.5*pow((x-mu)/std,2));
+  }
+
+  // static function to normalize a vector
+  static std::vector<float> normalize_vector(std::vector<float> inputVector) {
+
+    // declare sum
+    float sum = 0.0f;
+
+    // declare and resize output vector
+    std::vector<float> outputVector;
+    outputVector.resize(inputVector.size());
+
+    // estimate the sum
+    for (int i = 0; i < inputVector.size(); ++i) {
+      sum += inputVector[i];
+    }
+
+    // normalize with sum
+    for (int i = 0; i < inputVector.size(); ++i) {
+      outputVector[i] = inputVector[i]/sum;
+    }
+
+    // return normalized vector:
+    return outputVector;
   }
 };
 
