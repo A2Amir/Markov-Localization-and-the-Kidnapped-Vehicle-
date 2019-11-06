@@ -428,15 +428,15 @@ Sensor observations are provided in a 2D vector where each inner vector represen
 In the Coding_Full_Filter function is first implemented the Bayes' localization filter by first initializing priors, then doing the following within each time step:
 
 * extract sensor observations
-** for each pseudo-position:
 
-*** get the motion model probability
+* for each pseudo-position:
+ * get the motion model probability
 
-*** determine pseudo ranges
+ * determine pseudo ranges
 
-*** get the observation model probability
+ * get the observation model probability
 
-*** use the motion and observation model probabilities to calculate the posterior probability
+ * use the motion and observation model probabilities to calculate the posterior probability
 
 * normalize posteriors (see helpers.h for a normalization function)
 
