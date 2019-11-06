@@ -439,8 +439,7 @@ In the [Coding_Full_Filter function](https://github.com/A2Amir/Markov-Localizati
 
 
 ---
-Author: Amir Ziaee
-
-Date: 5.Nov.2019
+% Amir Ziaee
+% Nov.2019
 ---
 
