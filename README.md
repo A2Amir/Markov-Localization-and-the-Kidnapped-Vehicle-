@@ -425,7 +425,7 @@ Sensor observations are provided in a 2D vector where each inner vector represen
     {0,9},{8},{7},{6},{5}, {4},{3},{2},{1},{0}, {}, {}, {}};
 
 
-In the Coding_Full_Filter function is first implemented the Bayes' localization filter by first initializing priors, then doing the following within each time step:
+In the [Coding_Full_Filter function](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/Coding_Full_Filter.cpp) is first implemented the Bayes' localization filter by first initializing priors, then doing the following within each time step:
 
 * extract sensor observations
 
@@ -436,4 +436,10 @@ In the Coding_Full_Filter function is first implemented the Bayes' localization 
   * use the motion and observation model probabilities to calculate the posterior probability
 * normalize posteriors (see helpers.h for a normalization function)
 * update priors (priors --> posteriors)
+
+
+---
+author: Amir Ziaee
+date: 5.Nov.2019
+---
 
