@@ -353,9 +353,35 @@ you can find [Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnap
     observation measurements: [5.5m, 11m]
     observation standard deviation: 1.0m
 
+#### 6.1 Get Pseudo Ranges:
+
+In the previous exercises we manually executed the steps for determining pseudo ranges and our observation model probability. Now let's implement a function that accepts a vector of landmark positions, a pseudo position (x), and returns a vector of sorted (ascending) pseudo ranges. Later, we will use the pseudo range vector as an input for our observation model function.
+
+To implement the [pseudo_range_estimator](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/pseudo_range_estimator.cpp) function we must do the following for each pseudo position x:
 
 
-These insights allows you to implement observation model in C++.
+For each landmark position:
+* determine the distance between each pseudo position x and each landmark position
+* if the distance is positive (landmark is forward of the pseudo position) push the distance to the pseudo range vector
+* sort the pseudo range vector in ascending order
+* return the pseudo range vector
+There may be missing x values in the output. This is because not all x values have a forward landmark (positive pseudo range).
+
+#### 6.3 Coding the Observation Model:
+
+The final individual model we will implement is the observation model. The observation model accepts the pseudo range vector from the previous assignment, an observation vector (from vehicle sensors), and returns the observation model probability. Ultimately, we will multiply this by the motion model probability, then normalize to produce the belief state for the current time step.
+
+To implement the observation_model function we must do the following for each pseudo position x:
+
+
+For each observation:
+* determine if a pseudo range vector exists for the current pseudo position x
+* if the vector exists, extract and store the minimum distance, element 0 of the sorted vector, and remove that element (so we don't re-use it). This will be passed to norm_pdf
+* if the pseudo range vector does not exist, pass the maximum distance to norm_pdf
+* use [norm_pdf](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/DetermineProbabilities.cpp) to determine the observation model probability
+* return the total probability 
+
+
 ## 7. Summerize the Bayes Localization Filter
 Before you go back to the coding part,I would like to finalize the theory of the base localization further.We have accomplished a lot:
 
