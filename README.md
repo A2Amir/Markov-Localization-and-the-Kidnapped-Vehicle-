@@ -1,48 +1,35 @@
 # Content:
 
-<details>
-   <summary>Localization Posterior</summary>
-   <p>1. Introduction</p>
-   <p>2. Explanations</p>
 
-</details>
+1. Localization Posterior
+   1. Introduction
+   2. Explanations
 
-<details>
-   <summary>Bayes' Filter For Localization</summary>
-   <p>1. Calculate Localization Posterior</p>
-   <p>2. Initialize Belief State</p>
-   <p>3. Initialize Belief State</p>
-</details>
- 
-<details>
-   <summary>How Much Data: Explanation</summary>
-</details>
 
-<details>
-   <summary>Derivation schema</summary>
-   <p>1. Apply Bayes Rule with Additional Conditions</p>
-</details>
+
+2. Bayes' Filter For Localization
+   1. Calculate Localization Posterior
+   2. Initialize Belief State
+   3. Initialize Belief State
+
+ 3. How Much Data: Explanation
+
+4. Derivation schema
+   1. Apply Bayes Rule with Additional Conditions
   
-  <details>
-   <summary>Implementation for Motion Model</summary>
-   <p>1.  Determine Probabilities</p>
-   <p>2. Motion Model Probabiity</p>
-   <p>3. Coding the Motion Model</p>
-</details> 
+5. Implementation for Motion Model
+   1.  Determine Probabilities
+   2. Motion Model Probabiity
+   3. Coding the Motion Model
 
-  <details>
-   <summary>Implementation for observation Model</summary>
-   <p>1.  Observation Model Probability</p>
-   <p>2. Get Pseudo Ranges</p>
-   <p>3. Coding the Observation Model</p>
-</details> 
+6. Implementation for observation Model
+   1.  Observation Model Probability
+   2. Get Pseudo Ranges
+   3. Coding the Observation Model
+7. Summerize the Bayes Localization Filter
+   1. Bayes Filter Theory Summary
+   2. Coding the Full Filter
 
-  <details>
-   <summary> Summerize the Bayes Localization Filter</summary>
-   <p>1. Bayes Filter Theory Summary</p>
-   <p>2. Coding the Full Filter</p>
-
-</details> 
 
 
 ## Markov Localization and the Kidnapped Vehicle
