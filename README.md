@@ -290,9 +290,9 @@ In the next concept we will implement the motion model in C++.
   <p align="center"> <img src="./img/25.jpg" style="right;" alt="  the motion model" width="400" height="300"> </p> 
   
   
-#### 5.3 [Coding the Motion Model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp):
+#### 5.3 [Coding the Motion Model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/motion_model.cpp):
 
-we have manually calculated each step for determining the motion model probability, these steps are implemented in a function  called the [motion_model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp), which steps through each position x and prints the results to stdout. the motion_model function involves:
+we have manually calculated each step for determining the motion model probability, these steps are implemented in a function  called the [motion_model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/motion_model.cpp), which steps through each position x and prints the results to stdout. the motion_model function involves:
 For each x<sub>t</sub> :
 * Calculate the transition probability for each potential value x<sub>t−1</sub>.
 * Calculate the discrete motion model probability by multiplying the transition model probability by the belief state (prior) for x<sub>t−1</sub> 
@@ -369,9 +369,9 @@ There may be missing x values in the output. This is because not all x values ha
 
 #### 6.3 Coding the Observation Model:
 
-The final individual model we will implement is the observation model. The observation model accepts the pseudo range vector from the previous assignment, an observation vector (from vehicle sensors), and returns the observation model probability. Ultimately, we will multiply this by the motion model probability, then normalize to produce the belief state for the current time step.
+The final individual model we will implement is [the observation model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/observation_model.cpp). The observation model accepts the pseudo range vector from the previous assignment, an observation vector (from vehicle sensors), and returns the observation model probability. Ultimately, we will multiply this by the motion model probability, then normalize to produce the belief state for the current time step.
 
-To implement the observation_model function we must do the following for each pseudo position x:
+To implement the [observation_model function](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/observation_model.cpp) we must do the following for each pseudo position x:
 
 
 For each observation:
@@ -414,4 +414,31 @@ The motion model describes the prediction step of the filter while the observati
 
  <p align="right"> <img src="./img/33.jpg" style="right;" alt=" realizations of the Bayes filter " width="600" height="300"> </p> 
 
-In the next few sections, we will learn how to estimate pseudo ranges, calculate the observation model probability, and complete the implementation of the observation model in C++.
+
+## 7. Coding the Full Filter
+
+In previous lessons we learned the basis of our filter, tried some example calculations by hand, and implemented critical steps and models for a single time step and vector of sensor observations. In this final coding exercise we will implement the entire filter using the pieces we have already developed for multiple time steps and sensor observations. 
+Sensor observations are provided in a 2D vector where each inner vector represents the sensor observations, in meters, at a time step.
+ 
+    {{1,7,12,21}, {0,6,11,20}, {5,10,19}, {4,9,18}, {3,8,17},
+    {2,7,16},{1,6,15}, {0,5,14}, {4,13}, {3,12},{2,11},{1,10},
+    {0,9},{8},{7},{6},{5}, {4},{3},{2},{1},{0}, {}, {}, {}};
+
+
+In the Coding_Full_Filter function is first implemented the Bayes' localization filter by first initializing priors, then doing the following within each time step:
+
+* extract sensor observations
+
+* for each pseudo-position:
+ * get the motion model probability
+
+ * determine pseudo ranges
+
+ * get the observation model probability
+
+ * use the motion and observation model probabilities to calculate the posterior probability
+
+* normalize posteriors (see helpers.h for a normalization function)
+
+* update priors (priors --> posteriors)
+
