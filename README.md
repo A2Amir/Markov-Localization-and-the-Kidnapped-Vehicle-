@@ -290,9 +290,9 @@ In the next concept we will implement the motion model in C++.
   <p align="center"> <img src="./img/25.jpg" style="right;" alt="  the motion model" width="400" height="300"> </p> 
   
   
-#### 5.3 [Coding the Motion Model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp):
+#### 5.3 [Coding the Motion Model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/motion_model.cpp):
 
-we have manually calculated each step for determining the motion model probability, these steps are implemented in a function  called the [motion_model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/main.cpp), which steps through each position x and prints the results to stdout. the motion_model function involves:
+we have manually calculated each step for determining the motion model probability, these steps are implemented in a function  called the [motion_model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/motion_model.cpp), which steps through each position x and prints the results to stdout. the motion_model function involves:
 For each x<sub>t</sub> :
 * Calculate the transition probability for each potential value x<sub>t−1</sub>.
 * Calculate the discrete motion model probability by multiplying the transition model probability by the belief state (prior) for x<sub>t−1</sub> 
@@ -369,9 +369,9 @@ There may be missing x values in the output. This is because not all x values ha
 
 #### 6.3 Coding the Observation Model:
 
-The final individual model we will implement is the observation model. The observation model accepts the pseudo range vector from the previous assignment, an observation vector (from vehicle sensors), and returns the observation model probability. Ultimately, we will multiply this by the motion model probability, then normalize to produce the belief state for the current time step.
+The final individual model we will implement is [the observation model](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/observation_model.cpp). The observation model accepts the pseudo range vector from the previous assignment, an observation vector (from vehicle sensors), and returns the observation model probability. Ultimately, we will multiply this by the motion model probability, then normalize to produce the belief state for the current time step.
 
-To implement the observation_model function we must do the following for each pseudo position x:
+To implement the [observation_model function](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/observation_model.cpp) we must do the following for each pseudo position x:
 
 
 For each observation:
