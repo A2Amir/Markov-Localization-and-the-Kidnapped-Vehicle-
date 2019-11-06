@@ -1,6 +1,7 @@
 # Content:
 
-
+***
+<b>
 1. Localization Posterior
    1. Introduction
    2. Explanations
@@ -29,7 +30,9 @@
 7. Summerize the Bayes Localization Filter
    1. Bayes Filter Theory Summary
    2. Coding the Full Filter
-
+ </b>
+ 
+***
 
 
 ## Markov Localization and the Kidnapped Vehicle
