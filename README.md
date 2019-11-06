@@ -330,13 +330,34 @@ Here
 For example, assume your car is standing here at position 20, and would observe five meters to the first, 11 meters to the second, 39 metres to the third, and 57 meters to the last landmark. Compared to the real observations, the position(B) seems very unlikely. Observation would rather fit to a position around 40. Based on this example, the observation model for a single range measurement is defined by the probability of the following normal distribution, defined by the mean z<sup>*K </sup><sub>t</sub> and our sigma. 
  
  <p align="right"> <img src="./img/29.jpg" style="right;" alt="  following normal distribution, defined by the mean" width="600" height="400"> </p> 
+#### 6.1 Observation Model Probability:
+
+For the figure above, the top 1d map (green car) shows our observation measurements. These are the distances from our actual car position at time t, to landmarks, as detected by sensors. In this example, those distances are 19m and 37m.The bottom 1d map (yellow car) shows our pseudo range estimates. These are the distances we would expect given the landmarks and assuming a given position x at time t, of 20m. In this example, those distances are 5, 11, 39, and 57m.
+
+The observation model will be implemented by performing the following at each time step:
+
+* Measure the range to landmarks up to 100m from the vehicle, in the driving direction (forward)
+* Estimate a pseudo range from each landmark by subtracting pseudo position from the landmark position
+* Match each pseudo range estimate to its closest observation measurement
+* For each pseudo range and observation measurement pair, calculate a probability by passing relevant values to [norm_pdf](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/DetermineProbabilities.cpp):norm_pdf(observation_measurement, pseudo_range_estimate, observation_stdev)
+ * Return the product of all probabilities
+
+Why do we multiply all the probabilities in the last step? Our final signal (probability) must reflect all pseudo range, observation pairs. This blends our signal. For example, if we have a high probability match (small difference between the pseudo range estimate and the observation measurement) and low probability match (large difference between the pseudo range estimate and the observation measurement), our resultant probability will be somewhere in between, reflecting the overall belief we have in that state.
 
 
-These insights allows you to implement observation model in C++. But before you go back to the coding part,I would like to finalize the theory of the base localization further. 
+you can find [Here](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/Python/Markov%20Localization%20.ipynb) codes to practice this process using the following information and [norm_pdf](https://github.com/A2Amir/Markov-Localization-and-the-Kidnapped-Vehicle-/blob/master/C%2B%2B/DetermineProbabilities.cpp) 
 
+    pseudo position: x = 10m
+    vector of landmark positions from our map: [6m, 15m, 21m, 40m]
+    observation measurements: [5.5m, 11m]
+    observation standard deviation: 1.0m
+
+
+
+These insights allows you to implement observation model in C++.
 ## 7. Summerize the Bayes Localization Filter
+Before you go back to the coding part,I would like to finalize the theory of the base localization further.We have accomplished a lot:
 
-We have accomplished a lot. 
 * Starting with the generalized form of Bayes Rule we expressed our posterior, the belief of x at t as η (normalizer) multiplied with the observation model and the motion model. 
 * We simplified the observation model using the Markov assumption to determine the probability of z at time t, given only x at time t, and the map.
 * We expressed the motion model as a recursive state estimator using the Markov assumption and the law of total probability, resulting in a model that includes our belief at t – 1 and our transition model.
