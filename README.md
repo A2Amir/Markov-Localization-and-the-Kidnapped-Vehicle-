@@ -74,7 +74,7 @@ The position of the car at time t is defined with **x**, If we assume we have a 
 
 We will never know the state **x<sub>t</sub>** with perfect accuracy. What we want is to form a sufficiently accurate belief of the state  **x<sub>t</sub>** and we want to formulate this belief in a probabilistic way. The definition of the posterior distribution for the state x at time t can be explained like below:
 
-<p align="right"> <img src="./img/2.jpg" style="right;" alt="The definition of the posterior distribution for the state x at time t" width="500" height="150"> </p> 
+<p align="right"> <img src="./img/2.jpg" style="right;" alt="The definition of the posterior distribution for the state x at time t" width="400" height="100"> </p> 
 
 #### 1.2 Explanations:
 
