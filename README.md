@@ -11,7 +11,6 @@
 2. Bayes' Filter For Localization
    1. Calculate Localization Posterior
    2. Initialize Belief State
-   3. Initialize Belief State
 
  3. How Much Data: Explanation
 
